@@ -1,0 +1,76 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Libro',
+    typeNamePlural: 'Libros',
+    imageUrl: 'Imagen',
+    title: {
+        type: #STANDARD,
+        value: 'Titulo'
+    },
+    description: {
+        type: #STANDARD,
+        value: 'Autor'
+    }
+}
+@Search.searchable: true
+annotate view zcds_libros with
+{
+  @UI.facet: [{ id: 'DetalleLibro', label: 'Detalle del libro', type: #COLLECTION, position: 10  },
+  { id: 'Libros', parentId: 'DetalleLibro', label: 'Detalles', type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'DetalleLibro', position: 10 },
+      { id: 'Compradores', label: 'Compradores', type: #LINEITEM_REFERENCE, targetElement: '_Clientes', position: 30 } ]
+
+  @UI.selectionField: [{ position: 10 }]
+  //  @UI.fieldGroup: [{ qualifier: 'DetalleLibro', position: 10 }]
+  @UI.lineItem: [{ position: 10, importance: #HIGH }]
+  Titulo;
+  //  @UI.fieldGroup: [{ qualifier: 'DetalleLibro', position: 20 }]
+  @UI.lineItem: [{ position: 20, importance: #HIGH }]
+  Autor;
+
+  @UI.fieldGroup: [{ qualifier: 'DetalleLibro', position: 10 }]
+  id_libros;
+
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZCDS_CATEGORIAS_7883', element: 'descripcion'} }]
+  @UI: {
+     fieldGroup: [{ qualifier: 'DetalleLibro', position: 20 }],
+//   lineItem: [{ position: 30, importance: #HIGH }],
+   selectionField: [{ position: 20 }]}
+  Categoria;
+
+  @UI.fieldGroup: [{ qualifier: 'DetalleLibro', position: 30 }]
+  descripcion;
+
+  //  @UI.fieldGroup: [{ qualifier: 'DetalleLibro', position: 80 }]
+  @UI.lineItem: [{ position: 40, importance: #HIGH }]
+  Formato;
+  //  @UI.fieldGroup: [{ qualifier: 'DetalleLibro', position: 40 }]
+  @UI.lineItem: [{ position: 50, importance: #HIGH }]
+  Idioma;
+
+  //  @UI.fieldGroup: [{ qualifier: 'DetalleLibro', position: 50, label: 'Cantidad de Páginas' }]
+  @UI.lineItem: [{ position: 60, importance: #HIGH }]
+  CantPag;
+  //  @UI.fieldGroup: [{ qualifier: 'DetalleLibro', position: 60 }]
+  @UI.lineItem: [{ position: 70, importance: #HIGH }]
+  Precio;
+
+  @Search: {
+      defaultSearchElement: true,
+      ranking: #MEDIUM,
+      fuzzinessThreshold: 0.8 }
+  //  @UI.fieldGroup: [{ qualifier: 'DetalleLibro', position: 30 }]
+  @UI.lineItem: [{ position: 30, importance: #HIGH }]
+  Editorial;
+
+  @UI.fieldGroup: [{ qualifier: 'DetalleLibro', position: 70 }]
+  Moneda;
+
+  @UI.lineItem: [{ position: 100, criticality: 'nivel_ventas' }]
+  Estado;
+
+ 
+  @UI.lineItem: [{ position: 80, importance: #HIGH }]
+  _Clientes;
+
+}

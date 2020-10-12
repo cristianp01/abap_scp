@@ -1,0 +1,48 @@
+@Metadata.layer: #CORE
+//@UI.headerInfo: {
+//    typeName: 'Cliente',
+//    typeNamePlural: 'Clientes',
+//    title: {
+//        type: #STANDARD,
+//        label: 'nombrecompleto' },
+//    description: {
+//        type: #STANDARD,
+//        label: 'idcliente' },
+//    imageUrl: 'url'
+//}
+annotate view zcds_clientes
+    with 
+{
+@UI.facet: [{
+    id: 'DetalleClientes',
+    position: 10,
+    label: 'Cliente',
+    type: #COLLECTION},
+    { id: 'Cliente',
+      parentId: 'DetalleClientes',
+      label: 'Detalle',
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'DetalleClientes',
+      position: 10 }]
+    
+    @UI: { 
+    lineItem: [{ position: 20, importance: #HIGH}], 
+    fieldGroup: [{ qualifier: 'DetalleCientes', position: 10 }]}
+    id_cliente;
+    @UI: { 
+    lineItem: [{ position: 20, importance: #HIGH}], 
+    fieldGroup: [{ qualifier: 'DetalleCientes', position: 20 }]}    
+    email;
+    @UI: { 
+    lineItem: [{ position: 20, importance: #HIGH}], 
+    fieldGroup: [{ qualifier: 'DetalleCientes', position: 30 }]}
+    Acceso;    
+//    @UI: { 
+//    lineItem: [{ position: 20, importance: #HIGH}], 
+//    fieldGroup: [{ qualifier: 'DetalleCientes', position: 40 }]}
+//    email;
+//    @UI: { 
+//    lineItem: [{ position: 20, importance: #HIGH}], 
+//    fieldGroup: [{ qualifier: 'DetalleCientes', position: 50 }]}
+//    nombre;        
+}
